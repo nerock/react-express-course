@@ -22,7 +22,7 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
     },
-    (accesToken, refreshToken, profile, done) => {
+    (_, _, profile, done) => {
       User.findOne({ googleID: profile.id }).then((existingUser) => {
         if (existingUser) {
           done(null, existingUser);
